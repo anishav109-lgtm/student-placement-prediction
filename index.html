@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Prediction System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Placement Predictor</h2>
+    <form action="/predict" method="POST">
+        
+        <div class="form-group">
+            <label for="cgpa">CGPA (5.0 - 10.0):</label>
+            <input type="number" step="0.1" min="5.0" max="10.0" id="cgpa" name="cgpa" placeholder="e.g. 8.5" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tech_skills">Technical Skills Rating (1 - 5):</label>
+            <select id="tech_skills" name="tech_skills" required>
+                <option value="1">1 - Beginner</option>
+                <option value="2">2 - Basic</option>
+                <option value="3">3 - Intermediate</option>
+                <option value="4">4 - Advanced</option>
+                <option value="5">5 - Expert</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="comm_skills">Communication Skills:</label>
+            <select id="comm_skills" name="comm_skills" required>
+                <option value="1">1 - Low</option>
+                <option value="2">2 - Medium</option>
+                <option value="3">3 - High</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="internship">Internship Experience:</label>
+            <select id="internship" name="internship" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <button type="submit">Predict Result</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
