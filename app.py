@@ -1,4 +1,3 @@
-python
 from flask import Flask, render_template, request
 import numpy as np
 import pandas as pd
@@ -89,4 +88,3 @@ def predict():
 # Run application
 if __name__ == "__main__":
     app.run(debug=True)
-
